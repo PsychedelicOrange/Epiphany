@@ -1,0 +1,33 @@
+body
+{
+    background: hsla(358, 85%, 68%, 1);
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 100%;
+	animation: gradient 0.5s ease infinite;
+}
+
+.mainElements{
+    background-color:rgba(255,255,255,0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    text-align: center;
+    width: 1000px;
+    min-width: 20rem;
+    max-height: 90%;
+} 
+ #myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  .mdc-text-field{
+    width:75%;
+    margin: 1%;
+  } 
+  .login,.signup
+  {
+    width: 50%;
+    margin:1%;
+  }
