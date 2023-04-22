@@ -9,6 +9,11 @@
 @use "@material/chips/styles";
 @use "@material/ripple";
 @use "@material/snackbar/mdc-snackbar";
+@use "@material/card";
+@use "@material/icon-button";
+@import "@material/icon-button/mdc-icon-button";
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400&display=swap');
+@include card.core-styles;
 @include icon.icon-core-styles;
 @include textfield.core-styles;
 

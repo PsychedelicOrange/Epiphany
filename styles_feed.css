@@ -1,0 +1,72 @@
+.audio-holder-list{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.audio-holder{
+    display: grid;
+    grid-template-areas: "details title interaction" 
+                         "details player interaction";
+    grid-template-columns: 3fr 15fr 1fr;
+    gap: 1px;
+    border-radius: 10px;
+}
+.audio-holder-new{
+    display: grid;
+    grid-template-areas: "player player" 
+                         "details interaction";
+    grid-template-columns: 5fr 1fr;
+    gap: 1px;
+    border: 1px grey solid;
+    border-radius: 10px;
+}
+.audio-holder-new:hover{
+    box-shadow: 0 0.5px 4px rgba(128, 128, 128, 0.8);
+}
+.audio-details{
+    padding-left: 25px;
+    grid-area: details;
+    display: grid;
+    grid-template-areas: "title user timestamp";
+    grid-template-columns: 2fr 1fr 1fr;
+}
+.audio-timestamp{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    grid-area: timestamp;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    text-align: center;
+}
+.audio-user{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    grid-area: user;
+    text-align: center;
+    /* font-size: small; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+.audio-title{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    text-align: center;
+    grid-area: title;
+    /* font-size: larger; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+.audio-player{
+    grid-area: player;
+}
+.audio-interaction{
+    grid-area: interaction;
+    text-align: end;
+}
+.content{
+    border: 1px solid black;
+    border-radius: 10px;
+}
