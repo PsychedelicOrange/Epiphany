@@ -8,6 +8,7 @@
 @use "@material/chips";
 @use "@material/chips/styles";
 @use "@material/ripple";
+@use "@material/snackbar/mdc-snackbar";
 @include icon.icon-core-styles;
 @include textfield.core-styles;
 

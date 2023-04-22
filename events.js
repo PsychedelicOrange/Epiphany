@@ -14,3 +14,4 @@ password_visibility_icon.addEventListener("click", function() {
         password_field.type = "password";
     }
 })
+

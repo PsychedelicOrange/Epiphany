@@ -30,4 +30,12 @@ import {MDCTextFieldIcon} from '@material/textfield/icon';
     let ripple = new MDCRipple(document.getElementById("password_visibility"));
     ripple.unbounded = true;
 }
+import {MDCSnackbar} from '@material/snackbar';
+const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
+
+var login_button = document.getElementById("login");
+login_button.addEventListener("click",function()
+{
+    snackbar.open();
+});
 
