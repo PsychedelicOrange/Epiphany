@@ -1,7 +1,10 @@
+body{
+    grid-template-columns: 1fr 5fr;
+}
 .audio-holder-list{
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 25px;
 }
 .audio-holder{
     display: grid;
@@ -69,4 +72,51 @@
 .content{
     border: 1px solid black;
     border-radius: 10px;
+}
+.reply{
+    margin-left: 20px;
+}
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+  .brand{
+    color: #fff;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 1000;
+    font-size: 48px;
+  }
+  #navbar {
+    background-color: rgb(0, 0, 0); /* Black background color */
+    position: fixed; /* Make it stick/fixed */
+    z-index: 10;
+    top: 0; /* Stay on top */
+    width: 100%; /* Full width */
+    height: 75px;
+    transition: top 0.3s; /* Transition effect when sliding down (and up) */
+  }
+  #navbar_content{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+.search_section
+{
+    display: flex;
+    justify-content: space-between;
 }

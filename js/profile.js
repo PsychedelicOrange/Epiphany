@@ -1,4 +1,3 @@
-console.log('Javascript transpiled');
 import {MDCRipple} from '@material/ripple/index';
 document.querySelectorAll('.mdc-button').forEach
 (
@@ -24,18 +23,16 @@ document.querySelectorAll('.mdc-floating-label').forEach(
 );
 
 import {MDCTextFieldIcon} from '@material/textfield/icon';
-{let icon = new MDCTextFieldIcon(document.querySelector('.mdc-text-field__icon'));}
-
-{
-    let ripple = new MDCRipple(document.getElementById("password_visibility"));
-    ripple.unbounded = true;
-}
-import {MDCSnackbar} from '@material/snackbar';
-const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
-
-var login_button = document.getElementById("login");
-login_button.addEventListener("click",function()
-{
-    snackbar.open();
-});
-
+document.querySelectorAll('.mdc-text-field__icon').forEach(
+    function (mdc_text_field__icon)
+    {
+        let icon = new MDCTextFieldIcon(mdc_text_field__icon);
+    }
+)
+document.querySelectorAll('#password_visibility').forEach(
+    function(field)
+    {
+        let ripple = new MDCRipple(field);
+        ripple.unbounded=true;
+    }
+)

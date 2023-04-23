@@ -1,0 +1,28 @@
+Logo    Hello, [clickable profile icon] Parth Say something! [microphone-icon] // header that hides on scroll https://codepen.io/larrygeams/pen/amKVaW
+========================================================================
+(Search bar 				   (search icon)(home icon))   (Sort by: )
+ Now viewing: Home/Search Results/In Reply to XYZ post/ XYZ's Profile:
+{									}
+{									}
+{									}
+{									}
+{									}
+{									}
+{									}
+
+
+
+* Settings / profile page
+Outside the ui
+Delete post/s
+Delete profile
+Log out
+
+
+
+
+TODO :
+1. category finsish
+2. Profile page
+3. Start doing javascript functions 
+

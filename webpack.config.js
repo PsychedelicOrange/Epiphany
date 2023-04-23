@@ -1,4 +1,13 @@
 const autoprefixer = require('autoprefixer');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+let htmlPageNames = ['login','signup', 'feed', 'create','profile'];
+let multipleHtmlPlugins = htmlPageNames.map(name => {
+  return new HtmlWebpackPlugin({
+    template: `./${name}.html`, // relative path to the HTML files
+    filename: `${name}.html`, // output HTML files
+    chunks: [`${name}`] // respective JS files
+  })
+});
 
 module.exports = [{
   devServer: {
@@ -7,11 +16,18 @@ module.exports = [{
   },
 
   mode: 'development',
-  entry: ['./app.scss', './app.js'],
+  entry : {
+    style :'./app.scss',
+    login : './js/login.js',
+    signup : './js/signup.js',
+    feed : './js/feed.js',
+    create : './js/create.js',
+    profile : './js/profile.js'
+  },
+  //entry : ['./app.scss', './js/app.js' ,'./js/menu.js'],
   output: {
-    // This is necessary for webpack to compile
-    // But we never use style-bundle.js
-    filename: 'bundle.js',
+    filename: '[name].js',
+
     //publicPath: '/index.html',
   },
   module: {
@@ -61,4 +77,6 @@ module.exports = [{
       },
     ]
   },
+  plugins: [
+  ].concat(multipleHtmlPlugins)
 }];

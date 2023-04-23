@@ -1,0 +1,97 @@
+body {
+    min-height:100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    background: hsla(358, 85%, 68%, 1);
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    background-repeat: no-repeat;
+    ;
+  }
+  .mainElements {
+    background-color: rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    text-align: left;
+    margin-right: 10px;
+    padding: 100px;
+  }  
+.info{
+    text-align: justify;
+    color: #fff;
+    font-family: 'Roboto', monospace;
+    font-weight: 300;
+    font-size: large;
+}
+.name{
+    text-align: justify;
+    color: #fff;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: 1000;
+    font-size: 48px;
+  }
+  .audio-holder-new{
+    display: grid;
+    grid-template-areas: "player player" 
+                         "details interaction";
+    grid-template-columns: 5fr 1fr;
+    gap: 1px;
+    border: 1px grey solid;
+    border-radius: 10px;
+}
+.audio-holder-new:hover{
+    box-shadow: 0 0.5px 4px rgba(128, 128, 128, 0.8);
+}
+.audio-details{
+    padding-left: 25px;
+    grid-area: details;
+    display: grid;
+    grid-template-areas: "title user timestamp";
+    grid-template-columns: 2fr 1fr 1fr;
+}
+.audio-timestamp{
+  color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    grid-area: timestamp;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    text-align: center;
+}
+.audio-user{
+  color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    grid-area: user;
+    text-align: center;
+    /* font-size: small; */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+.audio-title{
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: larger;
+    background-color: #ffffff00;
+    text-align: left;
+    grid-area: title;
+    border: 1px grey solid;
+    border-radius: 10px;
+    /* font-size: larger; */
+}
+.audio-title:focus{
+  border: 0px grey none;
+}
+.audio-player{
+    grid-area: player;
+}
+.audio-interaction{
+    grid-area: interaction;
+    text-align: end;
+}
