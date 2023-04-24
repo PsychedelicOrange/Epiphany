@@ -36,3 +36,49 @@ document.querySelectorAll('#password_visibility').forEach(
         ripple.unbounded=true;
     }
 )
+// events 
+document.getElementById('logout').addEventListener("click",logout);
+function logout(){
+    document.cookie = "userId=;";
+    self.location = "login.html";
+}
+document.getElementById('delete').addEventListener("click",deleteAcc)
+function deleteAcc(){
+    fetch('/delete',{
+        method: 'GET',
+    }).then(respnce => {
+        document.cookie = "userId=;";
+        self.location = "signup.html";
+    });
+}
+window.onload = function(){
+    getUsername();
+    getStats();
+}
+// helpers
+function getStats(){
+    fetch('/stats',{
+        method:"POST",
+    })
+    .then(respnce => {
+        var arr = respnce.json().then(
+            function(value){
+                console.log(value);
+                document.getElementById('nrAudios').innerHTML = `No of Uploaded Audios: ${value[0]}`;
+                document.getElementById('nrLikes').innerHTML = `No of Likes: ${value[1]}`;
+                document.getElementById('nrReplies').innerHTML = `No of Replies: ${value[2]}`;
+            }
+        );
+    }).catch(err => console.log(err));
+}
+function getUsername(){
+    fetch('/username',{
+        method: 'GET',
+        // Headers : {
+        //     userId: getCookie('userId')
+        // }
+    }).then((response) => response.text())
+    .then((text) => {
+      document.getElementById('name_display').innerHTML = text;
+    });
+  }

@@ -8,7 +8,7 @@ Logo    Hello, [clickable profile icon] Parth Say something! [microphone-icon] /
 {									}
 {									}
 {									}
-{									}
+{									} 
 
 
 
@@ -19,10 +19,10 @@ Delete profile
 Log out
 
 
-
-
 TODO :
 1. category finsish
 2. Profile page
 3. Start doing javascript functions 
-
+4. Do all database queries
+5. Do all front end functions
+6. Do all backend functions

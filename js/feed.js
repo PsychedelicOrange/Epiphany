@@ -38,6 +38,7 @@ var mic_upload_button = document.getElementById('mic');
 mic_upload_button.addEventListener("click",function(){
     self.location="create.html";
 });
+
 // sort by drop down
 var drop_down = document.getElementById("drop_down");
 var input_field = document.getElementById("sort_by_input");
@@ -46,6 +47,7 @@ input_field.addEventListener("click",function(){
     const menu = new MDCMenu(document.querySelector('.mdc-menu'));
     menu.open = true;
 })
+input_field.addEventListener('change',updatePage);
 drop_down.addEventListener("click", function() {
     //console.log(document.getElementById("password_field").type)
     let input_field = document.getElementById("sort_by_input");
@@ -55,17 +57,19 @@ drop_down.addEventListener("click", function() {
     console.log("elo")
 });
 // search bar
+var search_term_field = document.getElementById('search_field');
 var search_icon = document.getElementById("search_button");
 search_icon.addEventListener("click",function(){
-    createAudioElement('chat gpt','Meek','Partho','just in time');
     console.log(this.innerHTML);
     if(this.innerHTML == 'search')
-    {
+    {   
         this.innerHTML = 'close';
     }
     else{
+        search_term_field.value = '';
         this.innerHTML = 'search';
     }
+    updatePage();
 });
 // Hide header
 var prevScrollpos = window.pageYOffset;
@@ -103,7 +107,7 @@ function createAudioElement(title,name, user, timestamp) {
     audio.controlsList = 'noplaybackrate nodownload';
     audio.style.margin = '5px';
     audio.style.width = '99%';
-    source.src = name + '.mp3';
+    source.src = './audio/'+ name + '.mp3';
     source.type = 'audio/mp3';
     audioTitle.className = 'audio-title';
     audioTitle.textContent = title;
@@ -131,4 +135,50 @@ function createAudioElement(title,name, user, timestamp) {
     audioInteraction.appendChild(forumButton);
     audioHolderNew.appendChild(audioInteraction);
     audioHolderList.appendChild(audioHolderNew);
+  }
+  window.onload = function(){
+    console.log(document.cookie)
+    getUsername();
+    updatePage();
+  };
+  function getUsername(){
+    fetch('/username',{
+        method: 'GET',
+    }).then((response) => response.text())
+    .then((text) => {
+        document.getElementById('name_display').innerHTML = text;
+    });
+  }
+  function clearAudioHolder()
+  {
+      const audioHolderList = document.querySelector('.audio-holder-list');
+      audioHolderList.innerHTML = ''
+  }
+  function updatePage()
+  {
+    var search_field = document.getElementById('search_field');
+    var sort_field = document.getElementById('Sort_by');
+    console.log(`search : ${search_field.value} and sort : ${sort_field.innerHTML}`);
+      fetch('/update/page',{
+          method:"POST",
+          headers : {
+            'search_term' : search_field.value,
+            'sort_by' : sort_field.innerHTML
+          }
+      })
+      .then(respnce => {
+          clearAudioHolder();
+          var arr = respnce.json().then(
+              function(value){
+                  console.log(value);
+                  for(const item of value)
+                  {
+                    var date = new Date();
+                    date.setTime(item['timestamp']);
+                    createAudioElement(item['title'],item['source'],item['author'],date.toLocaleTimeString());
+                  };
+              }
+          );
+         
+      }).catch(err => console.log(err));
   }

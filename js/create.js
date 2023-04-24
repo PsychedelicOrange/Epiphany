@@ -38,6 +38,7 @@ document.querySelectorAll('#password_visibility').forEach(
     }
 )
 
+
 /// recorder BITS  AND PEICES
 
 var record_state = " <span class=\"mdc-button__ripple\"></span>record";
@@ -74,7 +75,7 @@ function startRecording()
     navigator.mediaDevices.getUserMedia(constraints).then(function(stream){
     gumStream = stream
     input = audioContext.createMediaStreamSource(stream)
-    input.connect(audioContext.destination);
+    //input.connect(audioContext.destination);
     encodingType = "mp3";
     recorder = new WebAudioRecorder(input, {
         workerDir: "./js/",
@@ -136,10 +137,15 @@ function loadAsRecentRecording(blob, encoding) {
         clearAudioHolder();
         var date = new Date();
         var url = URL.createObjectURL(blob);
-        createAudioElement('title',url,localStorage['userName'],date.toISOString());
-        recordButton.disabled = false;
-        uploadButton.disabled = false;
-        recordButton.innerHTML = record_state;
+        fetch('/username',{
+            method: 'GET',
+        }).then((response) => response.text())
+        .then((text) => {
+            createAudioElement('title',url,text,date.toISOString());
+            recordButton.disabled = false;
+            uploadButton.disabled = false;
+            recordButton.innerHTML = record_state;
+        });
     } catch (error) {
         console.log(error)
     }
@@ -158,58 +164,35 @@ function clearElement(element)
       }
     
 }
-function updatePage(pageNumber)
-{
-    console.log(pageNumber);
-    document.getElementsByClassName("active")[0].classList.remove("active");
-    document.getElementById(`page${pageNumber}`).classList.add("active");
-    fetch('/update/page',{
-        method:"POST",
-        headers:{ 
-            'pageNumber' : pageNumber
-        }
-    })
-    .then(respnce => {
-        clearElement('page');
-        var arr = respnce.json().then(
-            function(value){
-                console.log(value);
-                var page = document.getElementById('page');
-                for(const item of value)
-                {
-                    const itemarr = item.split("_");
-                    var date = new Date();
-                    date.setTime((itemarr.slice(-1)));
-                    //console.log(date.toISOString());
-                    page.insertAdjacentHTML('beforeend',`<div class=audioPost>
-                    <p>${itemarr[0]}</p><small>${date.toISOString()}
-                        <audio controls>
-                        <source src="res\\${item}.mp3" type="audio/mp3">
-                        Your browser does not support the audio element.
-                        </audio>
-                    </div>`);
-                };
-            }
-        );
-       
-    }).catch(err => console.log(err));
-}
 function uploadRecentRecordingToServer()
 {
-    console.log("file upload started")
+    console.log("file upload started");
+    var audioTitleField = document.querySelector('.audio-title');
     var date = new Date();
-    info_string = `parth_${date.getTime()}`;
-    var formData = new FormData();
-    console.log("filename is "+info_string);
-    formData.append('recentRecording',recentBlob,info_string);
-    fetch ('/upload/', {
-        method:"POST",
-        body: formData
-    })
-    .then(function(respnce){
-        self.location="feed.html";
-    })
-    .catch(err => console.log(err));
+    var timestamp = date.getTime();
+    fetch('/username',{
+        method: 'GET',
+    }).then((response) => response.text())
+    .then((text) => {
+        info_string = `${text}_${timestamp}`;
+        var formData = new FormData();
+        console.log("filename is "+info_string);
+        formData.append('recentRecording',recentBlob,info_string);
+        fetch ('/upload/', {
+            method:"POST",
+            headers : {
+                'Title': audioTitleField.value,
+                'Timestamp': timestamp,
+                'replyTo' : null
+            },
+            body: formData
+        })
+        .then(function(respnce){
+            self.location="feed.html";
+        })
+        .catch(err => console.log(err));
+    });
+    
     /*
     var xhttp = new XMLHttpRequest();
     xhttp.open("POST",'/upload',false);xhttp.send(blob);

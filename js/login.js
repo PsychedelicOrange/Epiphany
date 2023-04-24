@@ -58,7 +58,7 @@ login_button.addEventListener("click",function()
     .then(respnce => {
        if(respnce.ok)
        {
-            localStorage["username"] = username.value;
+            console.log(document.cookie);
             self.location="feed.html";
        }
        else{
