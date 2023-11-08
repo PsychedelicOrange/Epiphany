@@ -9,3 +9,4 @@ Host for editing and hot reload
 ```
 npm start
 ```
+NOTE: docs folder is just dist folder renamed for github pages.
