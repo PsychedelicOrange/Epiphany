@@ -2,9 +2,9 @@
 Front end for Audio Only Social Media Website
 Hosted Currently for demo:
 
-[feed](psyorange.com/Epiphany/feed.html) 
-[login](https://github.com/PsychedelicOrange/Epiphany/login.js) 
-[signup](https://github.com/PsychedelicOrange/Epiphany/signup.js) 
+[feed](https://psyorange.com/Epiphany/feed.html)
+[login](https://psyorange.com/Epiphany/login.html)
+[signup](https://psyorange.com/Epiphany/signup.html) 
 
 All js and css bundles built into dist/
 ```
