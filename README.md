@@ -6,6 +6,11 @@ Hosted Currently for demo:
 [login](https://psyorange.com/Epiphany/login.html)
 [signup](https://psyorange.com/Epiphany/signup.html) 
 
+Made using :
+* [Google's Mateial Web Components](https://github.com/material-components)
+* Backend with Express.js and sqlite as database.
+
+# Build Instructions
 All js and css bundles built into dist/
 ```
 npm run build
